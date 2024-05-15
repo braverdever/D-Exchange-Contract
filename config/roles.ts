@@ -32,7 +32,7 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<RolesCon
   };
 
   const testnetAdmins = {
-    "0xDb32f128c5bA8fb17a7e51937A72d4e894E25cc2": true,
+    "0x2d8859F58597cB69cA65dCE954fbdb620A54d7f1": true,
     // "0xf5AD4B512F1633B2fDB936Aff6De79bD569E0651": true,
   };
 

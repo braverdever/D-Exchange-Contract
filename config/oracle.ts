@@ -84,43 +84,52 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
     },
 
     xodex: {
-      realtimeFeedVerifier: "0x2Aba08dDd05379067D4bdcB33c8d9EfE6bdA36d3",
-      signers: ["0xDb32f128c5bA8fb17a7e51937A72d4e894E25cc2"],
-      minOracleSigners: 0,
-      minOracleBlockConfirmations: 255,
+      realtimeFeedVerifier: "0x8356C1c77ce21A7eDf01e4b671Ed3f798ecE004e",
+      signers: ["0x613efc476f21cDEe1c395cf3881e5Dc01510e637"],
+      minOracleSigners: 1,
+      minOracleBlockConfirmations: 2,
       maxOraclePriceAge: 60 * 60 * 24,
       maxRefPriceDeviationFactor: decimalToFloat(5, 1), // 50%
       tokens: {
         WXODEX: {
           priceFeed: {
-            address: "0x616aD0Fb12cc4Ad0B79f262F8393BF2DFB6C0De0",
-            decimals: 8,
+            address: "0x611AA9e296081755c8599b75434aDECBB73Bca12",
+            decimals: 18,
             // deploy: true,
             heartbeatDuration: 24 * 60 * 60,
             // initPrice: process.env.DG_INIT_PRICE,
           },
         },
-        PEPE: {
+        BTC: {
           priceFeed: {
-            address: "0xDCE2b65696901975E458603E5607Ed4043E3856B",
-            decimals: 8,
+            address: "0xbcB8200A1AE069d373B5cE7C0C366Dd5477b9FDe",
+            decimals: 18,
             // deploy: true,
             heartbeatDuration: 24 * 60 * 60,
             // initPrice: process.env.DG_INIT_PRICE,
           },
         },
-        SHIB: {
-          priceFeed: {
-            address: "0xA504eE6afC7463Be64ffF7FDbAA27d1543f33202",
-            decimals: 8,
-            // deploy: true,
-            heartbeatDuration: 24 * 60 * 60,
-            // initPrice: process.env.DG_INIT_PRICE,
-          },
-        },
+        // PEPE: {
+        //   priceFeed: {
+        //     address: "0xDCE2b65696901975E458603E5607Ed4043E3856B",
+        //     decimals: 8,
+        //     // deploy: true,
+        //     heartbeatDuration: 24 * 60 * 60,
+        //     // initPrice: process.env.DG_INIT_PRICE,
+        //   },
+        // },
+        // SHIB: {
+        //   priceFeed: {
+        //     address: "0xA504eE6afC7463Be64ffF7FDbAA27d1543f33202",
+        //     decimals: 8,
+        //     // deploy: true,
+        //     heartbeatDuration: 24 * 60 * 60,
+        //     // initPrice: process.env.DG_INIT_PRICE,
+        //   },
+        // },
         USDT: {
           priceFeed: {
-            decimals: 8,
+            decimals: 18,
             deploy: true,
             heartbeatDuration: 24 * 60 * 60,
             stablePrice: decimalToFloat(1),

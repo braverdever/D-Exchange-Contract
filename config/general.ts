@@ -45,10 +45,11 @@ export default async function ({ network }: HardhatRuntimeEnvironment) {
     };
   }
 
+  // TODO. set config
   const generalConfig = {
-    feeReceiver: "0xDb32f128c5bA8fb17a7e51937A72d4e894E25cc2",
-    holdingAddress: "0xDb32f128c5bA8fb17a7e51937A72d4e894E25cc2",
-    maxUiFeeFactor: 0, // 0.0002, 0.02%
+    feeReceiver: "0xD63757Be5CdbE85172Fd03d5d52ce01Cba8e6bCe", // what is it?
+    holdingAddress: "0x8d18D763c2676e29E75327324Af16235d660acE9", // what is it?
+    maxUiFeeFactor: 0, // 0.0005, 0.05%. what is it?
     minHandleExecutionErrorGas: 0,
     minHandleExecutionErrorGasToForward: 0, // measured gas required for an order cancellation: ~600,000
     minAdditionalGasForExecution: 0,
@@ -108,7 +109,7 @@ export default async function ({ network }: HardhatRuntimeEnvironment) {
       executionGasFeeBaseAmount: 1_000_000,
     },
     xodex: {
-      requestExpirationBlockAge: 25, // about 5 minutes assuming 1 block per 12 seconds
+      requestExpirationBlockAge: 300, // about 5 minutes assuming 1 block per 1 seconds
       // estimatedGasFeeBaseAmount: 1_000_000,
       // executionGasFeeBaseAmount: 1_000_000,
     },

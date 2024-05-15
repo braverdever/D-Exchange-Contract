@@ -262,11 +262,11 @@ const config: {
 
       ...baseMarketConfig,
 
-      maxLongTokenPoolAmount: expandDecimals(60_000_000, 18),
-      maxShortTokenPoolAmount: expandDecimals(10_500_000, 18),
+      maxLongTokenPoolAmount: expandDecimals(6_320_000_000, 18),
+      maxShortTokenPoolAmount: expandDecimals(1_000_000, 18),
 
-      maxLongTokenPoolAmountForDeposit: expandDecimals(6_000_000, 18),
-      maxShortTokenPoolAmountForDeposit: expandDecimals(1_500_000, 18),
+      maxLongTokenPoolAmountForDeposit: expandDecimals(6_320_000_000, 18),
+      maxShortTokenPoolAmountForDeposit: expandDecimals(1_000_000, 18),
 
       negativePositionImpactFactor: decimalToFloat(28, 9),
       positivePositionImpactFactor: decimalToFloat(14, 9),
@@ -285,21 +285,21 @@ const config: {
       positionImpactPoolDistributionRate: expandDecimals(70, 43), // ~60 DG/day
       minPositionImpactPoolAmount: expandDecimals(100, 18),
 
-      maxOpenInterestForLongs: decimalToFloat(10_000_000),
-      maxOpenInterestForShorts: decimalToFloat(10_000_000),
+      maxOpenInterestForLongs: decimalToFloat(6_000_000_000),
+      maxOpenInterestForShorts: decimalToFloat(800_000),
     },
     {
-      tokens: { indexToken: "PEPE", longToken: "PEPE", shortToken: "USDT" },
-      virtualTokenIdForIndexToken: hashString("PERP:PEPE/USD"),
-      virtualMarketId: hashString("SPOT:PEPE/USD"),
+      tokens: { indexToken: "BTC", longToken: "BTC", shortToken: "USDT" },
+      virtualTokenIdForIndexToken: hashString("PERP:BTC/USD"),
+      virtualMarketId: hashString("SPOT:BTC/USD"),
 
       ...baseMarketConfig,
 
-      maxLongTokenPoolAmount: expandDecimals(60_000_000, 18),
-      maxShortTokenPoolAmount: expandDecimals(10_500_000, 18),
+      maxLongTokenPoolAmount: expandDecimals(20, 18),
+      maxShortTokenPoolAmount: expandDecimals(1_000_000, 18),
 
-      maxLongTokenPoolAmountForDeposit: expandDecimals(6_000_000, 18),
-      maxShortTokenPoolAmountForDeposit: expandDecimals(1_500_000, 18),
+      maxLongTokenPoolAmountForDeposit: expandDecimals(20, 18),
+      maxShortTokenPoolAmountForDeposit: expandDecimals(1_000_000, 18),
 
       negativePositionImpactFactor: decimalToFloat(28, 9),
       positivePositionImpactFactor: decimalToFloat(14, 9),
@@ -318,42 +318,75 @@ const config: {
       positionImpactPoolDistributionRate: expandDecimals(70, 43), // ~60 DG/day
       minPositionImpactPoolAmount: expandDecimals(100, 18),
 
-      maxOpenInterestForLongs: decimalToFloat(10_000_000),
-      maxOpenInterestForShorts: decimalToFloat(10_000_000),
+      maxOpenInterestForLongs: decimalToFloat(18),
+      maxOpenInterestForShorts: decimalToFloat(800_000),
     },
-    {
-      tokens: { indexToken: "SHIB", longToken: "SHIB", shortToken: "USDT" },
-      virtualTokenIdForIndexToken: hashString("SHIB:SHIB/USD"),
-      virtualMarketId: hashString("SPOT:SHIB/USD"),
+    // {
+    //   tokens: { indexToken: "PEPE", longToken: "PEPE", shortToken: "USDT" },
+    //   virtualTokenIdForIndexToken: hashString("PERP:PEPE/USD"),
+    //   virtualMarketId: hashString("SPOT:PEPE/USD"),
 
-      ...baseMarketConfig,
+    //   ...baseMarketConfig,
 
-      maxLongTokenPoolAmount: expandDecimals(60_000_000, 18),
-      maxShortTokenPoolAmount: expandDecimals(10_500_000, 18),
+    //   maxLongTokenPoolAmount: expandDecimals(60_000_000, 18),
+    //   maxShortTokenPoolAmount: expandDecimals(10_500_000, 18),
 
-      maxLongTokenPoolAmountForDeposit: expandDecimals(6_000_000, 18),
-      maxShortTokenPoolAmountForDeposit: expandDecimals(1_500_000, 18),
+    //   maxLongTokenPoolAmountForDeposit: expandDecimals(6_000_000, 18),
+    //   maxShortTokenPoolAmountForDeposit: expandDecimals(1_500_000, 18),
 
-      negativePositionImpactFactor: decimalToFloat(28, 9),
-      positivePositionImpactFactor: decimalToFloat(14, 9),
+    //   negativePositionImpactFactor: decimalToFloat(28, 9),
+    //   positivePositionImpactFactor: decimalToFloat(14, 9),
 
-      negativeSwapImpactFactor: decimalToFloat(5, 9), // 0.05% for 16,667 USD of imbalance
-      positiveSwapImpactFactor: decimalToFloat(5, 9), // 0.05% for 33,333 USD of imbalance
+    //   negativeSwapImpactFactor: decimalToFloat(5, 9), // 0.05% for 16,667 USD of imbalance
+    //   positiveSwapImpactFactor: decimalToFloat(5, 9), // 0.05% for 33,333 USD of imbalance
 
-      // minCollateralFactor of 0.01 (1%) when open interest is 5,000,000 USD
-      minCollateralFactorForOpenInterestMultiplierLong: decimalToFloat(2, 9),
-      minCollateralFactorForOpenInterestMultiplierShort: decimalToFloat(2, 9),
+    //   // minCollateralFactor of 0.01 (1%) when open interest is 5,000,000 USD
+    //   minCollateralFactorForOpenInterestMultiplierLong: decimalToFloat(2, 9),
+    //   minCollateralFactorForOpenInterestMultiplierShort: decimalToFloat(2, 9),
 
-      // factor in open interest reserve factor 50%
-      borrowingFactorForLongs: decimalToFloat(15, 9), // 0.0000000015 * 50% = 0.0000000075, 0.00000075% / second, 23,65% per year if the pool is 100% utilized
-      borrowingFactorForShorts: decimalToFloat(15, 9), // 0.0000000015 * 50% = 0.0000000075, 0.00000075% / second, 23.65% per year if the pool is 100% utilized
+    //   // factor in open interest reserve factor 50%
+    //   borrowingFactorForLongs: decimalToFloat(15, 9), // 0.0000000015 * 50% = 0.0000000075, 0.00000075% / second, 23,65% per year if the pool is 100% utilized
+    //   borrowingFactorForShorts: decimalToFloat(15, 9), // 0.0000000015 * 50% = 0.0000000075, 0.00000075% / second, 23.65% per year if the pool is 100% utilized
 
-      positionImpactPoolDistributionRate: expandDecimals(70, 43), // ~60 DG/day
-      minPositionImpactPoolAmount: expandDecimals(100, 18),
+    //   positionImpactPoolDistributionRate: expandDecimals(70, 43), // ~60 DG/day
+    //   minPositionImpactPoolAmount: expandDecimals(100, 18),
 
-      maxOpenInterestForLongs: decimalToFloat(10_000_000),
-      maxOpenInterestForShorts: decimalToFloat(10_000_000),
-    }
+    //   maxOpenInterestForLongs: decimalToFloat(10_000_000),
+    //   maxOpenInterestForShorts: decimalToFloat(10_000_000),
+    // },
+    // {
+    //   tokens: { indexToken: "SHIB", longToken: "SHIB", shortToken: "USDT" },
+    //   virtualTokenIdForIndexToken: hashString("SHIB:SHIB/USD"),
+    //   virtualMarketId: hashString("SPOT:SHIB/USD"),
+
+    //   ...baseMarketConfig,
+
+    //   maxLongTokenPoolAmount: expandDecimals(60_000_000, 18),
+    //   maxShortTokenPoolAmount: expandDecimals(10_500_000, 18),
+
+    //   maxLongTokenPoolAmountForDeposit: expandDecimals(6_000_000, 18),
+    //   maxShortTokenPoolAmountForDeposit: expandDecimals(1_500_000, 18),
+
+    //   negativePositionImpactFactor: decimalToFloat(28, 9),
+    //   positivePositionImpactFactor: decimalToFloat(14, 9),
+
+    //   negativeSwapImpactFactor: decimalToFloat(5, 9), // 0.05% for 16,667 USD of imbalance
+    //   positiveSwapImpactFactor: decimalToFloat(5, 9), // 0.05% for 33,333 USD of imbalance
+
+    //   // minCollateralFactor of 0.01 (1%) when open interest is 5,000,000 USD
+    //   minCollateralFactorForOpenInterestMultiplierLong: decimalToFloat(2, 9),
+    //   minCollateralFactorForOpenInterestMultiplierShort: decimalToFloat(2, 9),
+
+    //   // factor in open interest reserve factor 50%
+    //   borrowingFactorForLongs: decimalToFloat(15, 9), // 0.0000000015 * 50% = 0.0000000075, 0.00000075% / second, 23,65% per year if the pool is 100% utilized
+    //   borrowingFactorForShorts: decimalToFloat(15, 9), // 0.0000000015 * 50% = 0.0000000075, 0.00000075% / second, 23.65% per year if the pool is 100% utilized
+
+    //   positionImpactPoolDistributionRate: expandDecimals(70, 43), // ~60 DG/day
+    //   minPositionImpactPoolAmount: expandDecimals(100, 18),
+
+    //   maxOpenInterestForLongs: decimalToFloat(10_000_000),
+    //   maxOpenInterestForShorts: decimalToFloat(10_000_000),
+    // }
   ],
   wannsee: [
     {

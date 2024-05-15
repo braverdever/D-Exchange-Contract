@@ -24,7 +24,9 @@ import { formatUnits, parseUnits } from "ethers/lib/utils";
 
 const getRpcUrl = (network) => {
   const defaultRpcs = {
-    xodex: "https://xo-dex.io",
+    // xodex: "https://xo-dex.io",
+    xodex: "https://testnet.xo-dex.com/rpc",
+
     bytex: "https://test-rpc.bytexc.org",
     arbitrum: "https://arb1.arbitrum.io/rpc",
     avalanche: "https://api.avax.network/ext/bc/C/rpc",
@@ -176,7 +178,7 @@ const config: HardhatUserConfig = {
     },
     xodex: {
       url: getRpcUrl("xodex"),
-      chainId: 2415,
+      chainId: 2416,
       accounts: getEnvAccounts(),
       // gasPrice: parseUnits("100", "gwei").toNumber(),
       // verify: {
@@ -187,6 +189,19 @@ const config: HardhatUserConfig = {
       // },
       // blockGasLimit: 2500,
     },
+    // txodex: {
+    //   url: getRpcUrl("txodex"),
+    //   chainId: 2416,
+    //   accounts: getEnvAccounts(),
+    //   // gasPrice: parseUnits("100", "gwei").toNumber(),
+    //   // verify: {
+    //   //   etherscan: {
+    //   //     apiUrl: "https://test.bytescan.io/",
+    //   //     apiKey: "",
+    //   //   },
+    //   // },
+    //   // blockGasLimit: 2500,
+    // },
   },
   // hardhat-deploy has issues with some contracts
   // https://github.com/wighawag/hardhat-deploy/issues/264

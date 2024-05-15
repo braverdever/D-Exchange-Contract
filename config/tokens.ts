@@ -448,21 +448,29 @@ const config: {
   },
   xodex: {
     WXODEX: {
-      address: "0x2F3AD0cdC8AD20337eb02bD6411b808EE30c7896",
+      address: "0x19F8dCE33Bb5D4B439373f3131d7e9fb61A52451",
       decimals: 18,
       wrappedNative: true,
       realtimeFeedId: "0x936c0124be926b0cedc1fbb49d1dfa1b6139b8dfa6dca704b011a00839d57c05", // hashString("WMXC")
       realtimeFeedDecimals: 8,
       transferGasLimit: 200 * 1000,
     },
-    PEPE: {
-      address: "0x2E218dC7873B52170D797cd34077D72D68EFDCF0",
+    BTC: {
+      address: "0x782016F9855b19aeAd06ec4BBB9Ec9029e054651",
       decimals: 18,
       // wrappedNative: true,
-      realtimeFeedId: "0x96396745c067a220e5a3239d2a0b299e1e018a14766ab359cf4eb9d8580f91cf", // hashString("WMXC")
+      realtimeFeedId: "0x90eaffbfeb59c7809178575c3b05fb2fa2ae1447f61a0456f102350626a69f0b", // hashString("WMXC")
       realtimeFeedDecimals: 8,
       transferGasLimit: 200 * 1000,
     },
+    // PEPE: {
+    //   address: "0x2E218dC7873B52170D797cd34077D72D68EFDCF0",
+    //   decimals: 18,
+    //   // wrappedNative: true,
+    //   realtimeFeedId: "0x96396745c067a220e5a3239d2a0b299e1e018a14766ab359cf4eb9d8580f91cf", // hashString("WMXC")
+    //   realtimeFeedDecimals: 8,
+    //   transferGasLimit: 200 * 1000,
+    // },
     USDT: {
       address: "0x21667417ce7875cd82A3f802023a218416DCD37b",
       decimals: 18,
@@ -470,13 +478,13 @@ const config: {
       realtimeFeedDecimals: 8,
       transferGasLimit: 200 * 1000,
     },
-    SHIB: {
-      address: "0xC2F349eC4277D427Abc3F41EBE7475B829eebAfD",
-      decimals: 18,
-      realtimeFeedId: "0xff2d966834e0f213afbd302ef4807420e5fa79496f491044201e3c3fc14d3264", // hashString("DG")
-      realtimeFeedDecimals: 8,
-      transferGasLimit: 200 * 1000,
-    },
+    // SHIB: {
+    //   address: "0xC2F349eC4277D427Abc3F41EBE7475B829eebAfD",
+    //   decimals: 18,
+    //   realtimeFeedId: "0xff2d966834e0f213afbd302ef4807420e5fa79496f491044201e3c3fc14d3264", // hashString("DG")
+    //   realtimeFeedDecimals: 8,
+    //   transferGasLimit: 200 * 1000,
+    // },
   },
 };
 
