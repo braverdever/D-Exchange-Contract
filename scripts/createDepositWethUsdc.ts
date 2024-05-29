@@ -11,9 +11,9 @@ const { ethers } = hre;
 async function getValues(): Promise<{
   wnt: WNT;
 }> {
-  if (hre.network.name === "avalancheFuji") {
+  if (hre.network.name === "xodex") {
     return {
-      wnt: await ethers.getContractAt("WNT", "0x1D308089a2D1Ced3f1Ce36B1FcaF815b07217be3"),
+      wnt: await ethers.getContractAt("WNT", "0x19F8dCE33Bb5D4B439373f3131d7e9fb61A52451"),
     };
   } else if (hre.network.name === "localhost") {
     return {
@@ -52,7 +52,8 @@ async function main() {
   }
   console.log("WNT balance %s", await wnt.balanceOf(wallet.address));
 
-  const weth: MintableToken = await ethers.getContract("WETH");
+  const weth: MintableToken = await ethers.getContractAt("WNT", "0x19F8dCE33Bb5D4B439373f3131d7e9fb61A52451")
+
   const longTokenAmount = expandDecimals(1, 17); // 0.1 weth
   const wethAllowance = await weth.allowance(wallet.address, router.address);
   console.log("weth address %s", weth.address);

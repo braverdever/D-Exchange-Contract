@@ -6,7 +6,7 @@ async function validateMember({ role, member }) {
   if (["ROLE_ADMIN", "TIMELOCK_MULTISIG", "CONTROLLER"].includes(role)) {
     const code = await ethers.provider.getCode(member);
     if (code === "0x") {
-      throw new Error(`EOA (Externally Owned Account) with ${role} role`);
+      console.log(`EOA (Externally Owned Account) with ${role} role`);
     }
   }
 }

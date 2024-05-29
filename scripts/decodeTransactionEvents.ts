@@ -3,7 +3,8 @@ import hre from "hardhat";
 async function main() {
   console.log("Network: %s", hre.network.name);
 
-  const txHash = process.env.TX;
+  // const txHash = process.env.TaX;
+  const txHash = '0xce2b4f2888925e2e85d9be81a14abfd66711ee8e8f2e8d1a3bfcc54565505e2f'
   if (!txHash) {
     throw new Error(
       "Missing TX env var. Example of usage: `TX=0x123... npx hardhat run scripts/decodeTransactionEvents.ts`"

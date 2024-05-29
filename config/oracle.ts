@@ -86,7 +86,7 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
     xodex: {
       realtimeFeedVerifier: "0x8356C1c77ce21A7eDf01e4b671Ed3f798ecE004e",
       signers: ["0x613efc476f21cDEe1c395cf3881e5Dc01510e637"],
-      minOracleSigners: 1,
+      minOracleSigners: 0,
       minOracleBlockConfirmations: 2,
       maxOraclePriceAge: 60 * 60 * 24,
       maxRefPriceDeviationFactor: decimalToFloat(5, 1), // 50%
@@ -94,7 +94,7 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
         WXODEX: {
           priceFeed: {
             address: "0x611AA9e296081755c8599b75434aDECBB73Bca12",
-            decimals: 18,
+            decimals: 8,
             // deploy: true,
             heartbeatDuration: 24 * 60 * 60,
             // initPrice: process.env.DG_INIT_PRICE,
@@ -103,7 +103,7 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
         BTC: {
           priceFeed: {
             address: "0xbcB8200A1AE069d373B5cE7C0C366Dd5477b9FDe",
-            decimals: 18,
+            decimals: 8,
             // deploy: true,
             heartbeatDuration: 24 * 60 * 60,
             // initPrice: process.env.DG_INIT_PRICE,
@@ -129,11 +129,11 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
         // },
         USDT: {
           priceFeed: {
-            decimals: 18,
+            decimals: 8,
             deploy: true,
             heartbeatDuration: 24 * 60 * 60,
             stablePrice: decimalToFloat(1),
-            initPrice: process.env.WMXC_INIT_PRICE,
+            initPrice: 100000000, //TODO set this somewhere? Use right decimals
           },
         },
       },

@@ -13,10 +13,10 @@ async function getValues(): Promise<{
   syntheticToken: MintableToken;
 }> {
   const tokens = await hre.gmx.getTokens();
-  if (hre.network.name === "wannsee") {
+  if (hre.network.name === "xodex") {
     return {
-      wnt: await ethers.getContractAt("WNT", "0x2F3AD0cdC8AD20337eb02bD6411b808EE30c7896"),
-      // syntheticToken: await ethers.getContractAt("MintableToken", "0xdCc959e6e731b1CcA695a9e28D39103Bd0ecdb05"),
+      wnt: await ethers.getContractAt("WNT", "0x19F8dCE33Bb5D4B439373f3131d7e9fb61A52451"),
+      syntheticToken: await ethers.getContractAt("MintableToken", "0x782016F9855b19aeAd06ec4BBB9Ec9029e054651"),
     };
   } else if (hre.network.name === "localhost") {
     return {
@@ -55,7 +55,7 @@ async function main() {
   }
   console.log("WNT balance %s", await wnt.balanceOf(wallet.address));
 
-  const weth: MintableToken = await ethers.getContract("WETH");
+  const weth: WNT = await ethers.getContractAt("WNT", "0x19F8dCE33Bb5D4B439373f3131d7e9fb61A52451")
   const longTokenAmount = expandDecimals(1, 15); // 0.001 weth
   const wethAllowance = await weth.allowance(wallet.address, router.address);
   console.log("weth address %s", weth.address);
@@ -66,7 +66,9 @@ async function main() {
   }
   console.log("weth balance %s", await weth.balanceOf(wallet.address));
 
-  const usdc: MintableToken = await ethers.getContract("DG");
+  // const usdc: MintableToken = await ethers.getContract("DG");
+  const usdc: MintableToken = await ethers.getContractAt("MintableToken", "0xd3E3bBE7220089A3778f3dd7487b8553d403A3aC");
+
   const shortTokenAmount = expandDecimals(1, 6); // 1 USDC
   const usdcAllowance = await usdc.allowance(wallet.address, router.address);
   console.log("USDC address %s", usdc.address);
@@ -100,6 +102,7 @@ async function main() {
     initialShortToken: usdc.address,
     longTokenSwapPath: [],
     shortTokenSwapPath: [],
+    uiFeeReceiver: ethers.constants.AddressZero
   };
   console.log("exchange router %s", exchangeRouter.address);
   console.log("deposit vault %s", depositVault.address);

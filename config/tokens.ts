@@ -472,7 +472,7 @@ const config: {
     //   transferGasLimit: 200 * 1000,
     // },
     USDT: {
-      address: "0x21667417ce7875cd82A3f802023a218416DCD37b",
+      address: "0xd3E3bBE7220089A3778f3dd7487b8553d403A3aC",
       decimals: 18,
       realtimeFeedId: "0xec72ce299bf3eb026f5cdf9f9ac37093d6ef6cb5fc0944dced3aa56ebce050cb", // hashString("DG")
       realtimeFeedDecimals: 8,

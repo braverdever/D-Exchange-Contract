@@ -15,5 +15,6 @@
   "GovToken_1": 1715693320,
   "Multicall3": 1715693344,
   "ProtocolGovernor_1": 1715693349,
-  "SubaccountRouter_1": 1715693382
+  "SubaccountRouter_1": 1715693382,
+  "DisableOldTestMarketOnAvalancheFuji": 1716981007
 }

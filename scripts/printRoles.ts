@@ -24,6 +24,8 @@ const knownRoles = Object.fromEntries(
 
 async function main() {
   const rolesConfig = await hre.gmx.getRoles();
+  console.log("rolesConfig", rolesConfig);
+
   const accountLables = Object.fromEntries(rolesConfig.map((item) => [item.account, item.label]));
   const roleStore = await ethers.getContract("RoleStore");
   const roleCount = await roleStore.getRoleCount();

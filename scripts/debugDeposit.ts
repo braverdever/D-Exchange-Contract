@@ -1,7 +1,7 @@
 import hre from "hardhat";
 
 async function main() {
-  const txHash = "0x2ce08b13a6ebad750d35a202f8808be3558470c8869add62a2b140dc993bbba5";
+  const txHash = "0xd89ecbab311fea85fa8acddd477123d7c3f06aebff790b2d5ebd611115abb430";
 
   const eventEmitter = await hre.ethers.getContract("EventEmitter");
   const receipt = await hre.ethers.provider.getTransactionReceipt(txHash);
