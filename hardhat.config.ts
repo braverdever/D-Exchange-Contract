@@ -13,14 +13,17 @@ import "hardhat-gas-reporter";
 import "hardhat-deploy";
 
 import "@typechain/hardhat";
-import "@nomiclabs/hardhat-ethers";
+// import "@nomiclabs/hardhat-ethers";
 
 // extends hre with gmx domain data
 import "./config";
 
 // add test helper methods
 import "./utils/test";
-import { formatUnits, parseUnits } from "ethers/lib/utils";
+
+import * as tenderly from "@tenderly/hardhat-tenderly";
+
+tenderly.setup({ automaticVerifications: true });
 
 const getRpcUrl = (network) => {
   const defaultRpcs = {
@@ -88,8 +91,10 @@ const config: HardhatUserConfig = {
           constantOptimizer: true,
         },
       },
+      evmVersion: "paris", // Add your EVM version here
     },
   },
+
   networks: {
     // hardhat: {
     //   saveDeployments: true,
@@ -189,6 +194,11 @@ const config: HardhatUserConfig = {
       // },
       // blockGasLimit: 2500,
     },
+    devNet: {
+      url: "https://virtual.mainnet.rpc.tenderly.co/6ede96bc-6dd2-4e78-9813-afbbb54edf8b",
+      accounts: getEnvAccounts(),
+      chainId: 2362,
+    },
     // txodex: {
     //   url: getRpcUrl("txodex"),
     //   chainId: 2416,
@@ -203,6 +213,12 @@ const config: HardhatUserConfig = {
     //   // blockGasLimit: 2500,
     // },
   },
+  tenderly: {
+    // https://docs.tenderly.co/account/projects/account-project-slug
+    project: "xo",
+    username: "nicolai_xo",
+  },
+
   // hardhat-deploy has issues with some contracts
   // https://github.com/wighawag/hardhat-deploy/issues/264
   etherscan: {

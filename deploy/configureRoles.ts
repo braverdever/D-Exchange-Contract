@@ -19,6 +19,7 @@ const rolesToRemove = {
   avalancheFuji: [],
   wannsee: [],
   xodex: [],
+  devNet: [],
 };
 
 const func = async ({ gmx, network }) => {

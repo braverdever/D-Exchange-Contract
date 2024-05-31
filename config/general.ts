@@ -86,6 +86,12 @@ export default async function ({ network }: HardhatRuntimeEnvironment) {
     skipBorrowingFeeForSmallerSide: true,
   };
 
+  const commonNetworkConfig = {
+    requestExpirationBlockAge: 300, // about 5 minutes assuming 1 block per 1 seconds
+    // estimatedGasFeeBaseAmount: 1_000_000,
+    // executionGasFeeBaseAmount: 1_000_000,
+  };
+
   const networkConfig = {
     arbitrumGoerli: {
       requestExpirationBlockAge: 1200, // about 5 minutes assuming 4 blocks per second
@@ -108,11 +114,8 @@ export default async function ({ network }: HardhatRuntimeEnvironment) {
       estimatedGasFeeBaseAmount: 1_000_000,
       executionGasFeeBaseAmount: 1_000_000,
     },
-    xodex: {
-      requestExpirationBlockAge: 300, // about 5 minutes assuming 1 block per 1 seconds
-      // estimatedGasFeeBaseAmount: 1_000_000,
-      // executionGasFeeBaseAmount: 1_000_000,
-    },
+    xodex: commonNetworkConfig,
+    devNet: commonNetworkConfig,
   }[network.name];
 
   if (!networkConfig) {

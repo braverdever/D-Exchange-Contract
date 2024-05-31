@@ -1,7 +1,9 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { TOKEN_ORACLE_TYPES } from "../utils/oracle";
 import { decimalToFloat } from "../utils/math";
-import { BigNumberish } from "ethers";
+import { BigNumberish, constants } from "ethers";
+
+const { AddressZero } = constants;
 
 type OracleRealPriceFeed = {
   address: string;
@@ -38,6 +40,66 @@ export type OracleConfig = {
   };
 };
 
+const commonConfig = {
+  realtimeFeedVerifier: "0x8356C1c77ce21A7eDf01e4b671Ed3f798ecE004e",
+  signers: ["0x2d8859F58597cB69cA65dCE954fbdb620A54d7f1"],
+  minOracleSigners: 0,
+  minOracleBlockConfirmations: 2,
+  maxOraclePriceAge: 60 * 60 * 24,
+  maxRefPriceDeviationFactor: decimalToFloat(5, 1), // 50%
+  tokens: {
+    WXODEX: {
+      priceFeed: {
+        // address: "0x611AA9e296081755c8599b75434aDECBB73Bca12",
+        decimals: 8,
+        deploy: true,
+        heartbeatDuration: 24 * 60 * 60,
+        initPrice: 100000000, //TODO set this somewhere? Use right decimals
+
+        // initPrice: process.env.DG_INIT_PRICE,
+      },
+    },
+    BTC: {
+      priceFeed: {
+        // address: "0xbcB8200A1AE069d373B5cE7C0C366Dd5477b9FDe",
+        decimals: 8,
+        deploy: true,
+        heartbeatDuration: 24 * 60 * 60,
+        initPrice: 100000000, //TODO set this somewhere? Use right decimals
+
+        // initPrice: process.env.DG_INIT_PRICE,
+      },
+    },
+    // PEPE: {
+    //   priceFeed: {
+    //     address: "0xDCE2b65696901975E458603E5607Ed4043E3856B",
+    //     decimals: 8,
+    //     // deploy: true,
+    //     heartbeatDuration: 24 * 60 * 60,
+    //     // initPrice: process.env.DG_INIT_PRICE,
+    //   },
+    // },
+    // SHIB: {
+    //   priceFeed: {
+    //     address: "0xA504eE6afC7463Be64ffF7FDbAA27d1543f33202",
+    //     decimals: 8,
+    //     // deploy: true,
+    //     heartbeatDuration: 24 * 60 * 60,
+    //     // initPrice: process.env.DG_INIT_PRICE,
+    //   },
+    // },
+    USDT: {
+      priceFeed: {
+        decimals: 8,
+        deploy: true,
+        heartbeatDuration: 24 * 60 * 60,
+        stablePrice: decimalToFloat(1),
+        initPrice: 100000000, //TODO set this somewhere? Use right decimals
+      },
+    },
+  },
+};
+
 export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleConfig> {
   const network = hre.network;
 
@@ -48,7 +110,7 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
 
   const config: { [network: string]: OracleConfig } = {
     localhost: {
-      realtimeFeedVerifier: ethers.constants.AddressZero,
+      realtimeFeedVerifier: AddressZero,
       signers: testSigners,
       minOracleSigners: 0,
       minOracleBlockConfirmations: 255,
@@ -57,7 +119,7 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
     },
 
     hardhat: {
-      realtimeFeedVerifier: ethers.constants.AddressZero,
+      realtimeFeedVerifier: AddressZero,
       signers: testSigners,
       minOracleSigners: 0,
       minOracleBlockConfirmations: 255,
@@ -83,61 +145,8 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
       },
     },
 
-    xodex: {
-      realtimeFeedVerifier: "0x8356C1c77ce21A7eDf01e4b671Ed3f798ecE004e",
-      signers: ["0x613efc476f21cDEe1c395cf3881e5Dc01510e637"],
-      minOracleSigners: 0,
-      minOracleBlockConfirmations: 2,
-      maxOraclePriceAge: 60 * 60 * 24,
-      maxRefPriceDeviationFactor: decimalToFloat(5, 1), // 50%
-      tokens: {
-        WXODEX: {
-          priceFeed: {
-            address: "0x611AA9e296081755c8599b75434aDECBB73Bca12",
-            decimals: 8,
-            // deploy: true,
-            heartbeatDuration: 24 * 60 * 60,
-            // initPrice: process.env.DG_INIT_PRICE,
-          },
-        },
-        BTC: {
-          priceFeed: {
-            address: "0xbcB8200A1AE069d373B5cE7C0C366Dd5477b9FDe",
-            decimals: 8,
-            // deploy: true,
-            heartbeatDuration: 24 * 60 * 60,
-            // initPrice: process.env.DG_INIT_PRICE,
-          },
-        },
-        // PEPE: {
-        //   priceFeed: {
-        //     address: "0xDCE2b65696901975E458603E5607Ed4043E3856B",
-        //     decimals: 8,
-        //     // deploy: true,
-        //     heartbeatDuration: 24 * 60 * 60,
-        //     // initPrice: process.env.DG_INIT_PRICE,
-        //   },
-        // },
-        // SHIB: {
-        //   priceFeed: {
-        //     address: "0xA504eE6afC7463Be64ffF7FDbAA27d1543f33202",
-        //     decimals: 8,
-        //     // deploy: true,
-        //     heartbeatDuration: 24 * 60 * 60,
-        //     // initPrice: process.env.DG_INIT_PRICE,
-        //   },
-        // },
-        USDT: {
-          priceFeed: {
-            decimals: 8,
-            deploy: true,
-            heartbeatDuration: 24 * 60 * 60,
-            stablePrice: decimalToFloat(1),
-            initPrice: 100000000, //TODO set this somewhere? Use right decimals
-          },
-        },
-      },
-    },
+    xodex: commonConfig,
+    devNet: commonConfig,
 
     wannsee: {
       realtimeFeedVerifier: "0xb7Eaf885675f02Bdd6fBDA6Df44E38A819CE8040",
