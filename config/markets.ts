@@ -315,7 +315,7 @@ const commonConfig = [
     positionImpactPoolDistributionRate: expandDecimals(70, 43), // ~60 DG/day
     minPositionImpactPoolAmount: expandDecimals(100, 18),
 
-    maxOpenInterestForLongs: decimalToFloat(18),
+    maxOpenInterestForLongs: decimalToFloat(800_000),
     maxOpenInterestForShorts: decimalToFloat(800_000),
   },
   // {

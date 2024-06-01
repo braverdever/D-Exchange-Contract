@@ -12,6 +12,8 @@ async function main() {
     addressToSymbol[address] = tokenSymbol;
   }
 
+  // console.log("hre.ethers", hre.ethers);
+
   const reader = await hre.ethers.getContract("Reader");
   const dataStore = await hre.ethers.getContract("DataStore");
   console.log("reading data from DataStore %s Reader %s", dataStore.address, reader.address);

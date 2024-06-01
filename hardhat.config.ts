@@ -21,9 +21,9 @@ import "./config";
 // add test helper methods
 import "./utils/test";
 
-import * as tenderly from "@tenderly/hardhat-tenderly";
+// import * as tenderly from "@tenderly/hardhat-tenderly";
 
-tenderly.setup({ automaticVerifications: true });
+// tenderly.setup({ automaticVerifications: true });
 
 const getRpcUrl = (network) => {
   const defaultRpcs = {

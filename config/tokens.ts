@@ -46,15 +46,18 @@ export type TokensConfig = { [tokenSymbol: string]: TokenConfig };
 
 const commonConfig = {
   WXODEX: {
-    address: "0x4efBC9159455Bab6530bfdF81Ed6bfD3CbD5D819",
+    // address: "0x4efBC9159455Bab6530bfdF81Ed6bfD3CbD5D819",
+    deploy: true,
     decimals: 18,
+
     wrappedNative: true,
     realtimeFeedId: "0x936c0124be926b0cedc1fbb49d1dfa1b6139b8dfa6dca704b011a00839d57c05", // hashString("WMXC")
     realtimeFeedDecimals: 8,
     transferGasLimit: 200 * 1000,
   },
   BTC: {
-    address: "0x243856D07052a697283a3bCb37AcE42C15BbC7B0",
+    // address: "0x243856D07052a697283a3bCb37AcE42C15BbC7B0",
+    deploy: true,
     decimals: 18,
     // wrappedNative: true,
     realtimeFeedId: "0x90eaffbfeb59c7809178575c3b05fb2fa2ae1447f61a0456f102350626a69f0b", // hashString("WMXC")
@@ -70,12 +73,20 @@ const commonConfig = {
   //   transferGasLimit: 200 * 1000,
   // },
   USDT: {
-    address: "0xC65771f546544F40Fca0b29BD85dC39B68686504",
+    // address: "0xC65771f546544F40Fca0b29BD85dC39B68686504",
+    deploy: true,
     decimals: 18,
     realtimeFeedId: "0xec72ce299bf3eb026f5cdf9f9ac37093d6ef6cb5fc0944dced3aa56ebce050cb", // hashString("DG")
     realtimeFeedDecimals: 8,
     transferGasLimit: 200 * 1000,
   },
+  // ETH: {
+  //   address: "0xC65771f546544F40Fca0b29BD85dC39B68686504",
+  //   decimals: 18,
+  //   realtimeFeedId: "0xec72ce299bf3eb026f5cdf9f9ac37093d6ef6cb5fc0944dced3aa56ebce050cb", // hashString("DG")
+  //   realtimeFeedDecimals: 8,
+  //   transferGasLimit: 200 * 1000,
+  // },
   // SHIB: {
   //   address: "0xC2F349eC4277D427Abc3F41EBE7475B829eebAfD",
   //   decimals: 18,

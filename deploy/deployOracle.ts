@@ -8,10 +8,11 @@ const constructorContracts = ["RoleStore", "OracleStore"];
 const func = createDeployFunction({
   contractName: "Oracle",
   dependencyNames: constructorContracts,
+  shouldDeploy: true,
   getDeployArgs: async ({ dependencyContracts, network, gmx, get }) => {
     const oracleConfig = await gmx.getOracle();
     let realtimeFeedVerifierAddress = oracleConfig.realtimeFeedVerifier;
-    if (network.name === "hardhat" ) {
+    if (network.name === "hardhat" || network.name === "devNet") {
       const realtimeFeedVerifier = await get("MockRealtimeFeedVerifier");
       realtimeFeedVerifierAddress = realtimeFeedVerifier.address;
     }

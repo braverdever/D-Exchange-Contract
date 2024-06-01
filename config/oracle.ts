@@ -41,7 +41,7 @@ export type OracleConfig = {
 };
 
 const commonConfig = {
-  realtimeFeedVerifier: "0x8356C1c77ce21A7eDf01e4b671Ed3f798ecE004e",
+  realtimeFeedVerifier: "0x0A150A8Cda3c44263322e10041f5951A7baeda2c",
   signers: ["0x2d8859F58597cB69cA65dCE954fbdb620A54d7f1"],
   minOracleSigners: 0,
   minOracleBlockConfirmations: 2,
@@ -54,7 +54,7 @@ const commonConfig = {
         decimals: 8,
         deploy: true,
         heartbeatDuration: 24 * 60 * 60,
-        initPrice: 100000000, //TODO set this somewhere? Use right decimals
+        initPrice: 16480, //TODO set this somewhere? Use right decimals
 
         // initPrice: process.env.DG_INIT_PRICE,
       },
@@ -65,7 +65,7 @@ const commonConfig = {
         decimals: 8,
         deploy: true,
         heartbeatDuration: 24 * 60 * 60,
-        initPrice: 100000000, //TODO set this somewhere? Use right decimals
+        initPrice: 6741159000000, //TODO set this somewhere? Use right decimals
 
         // initPrice: process.env.DG_INIT_PRICE,
       },
@@ -145,8 +145,8 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
       },
     },
 
-    xodex: commonConfig,
-    devNet: commonConfig,
+    xodex: { ...commonConfig },
+    devNet: { ...commonConfig, realtimeFeedVerifier: "0x0a150a8cda3c44263322e10041f5951a7baeda2c" },
 
     wannsee: {
       realtimeFeedVerifier: "0xb7Eaf885675f02Bdd6fBDA6Df44E38A819CE8040",
