@@ -109,21 +109,19 @@ contract WithdrawalHandler is IWithdrawalHandler, GlobalReentrancyGuard, RoleMod
 
         uint256 executionGas = GasUtils.getExecutionGas(dataStore, startingGas);
 
-        // try this._executeWithdrawal{ gas: executionGas }(
-        this._executeWithdrawal(
+        try this._executeWithdrawal{ gas: executionGas }(
             key,
             withdrawal,
             oracleParams,
             msg.sender
-        );
-        //  {
-        // } catch (bytes memory reasonBytes) {
-        //     _handleWithdrawalError(
-        //         key,
-        //         startingGas,
-        //         reasonBytes
-        //     );
-        // }
+        ) {
+        } catch (bytes memory reasonBytes) {
+            _handleWithdrawalError(
+                key,
+                startingGas,
+                reasonBytes
+            );
+        }
     }
 
     // @dev simulate execution of a withdrawal to check for any errors

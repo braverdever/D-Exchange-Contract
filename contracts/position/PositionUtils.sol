@@ -428,6 +428,7 @@ library PositionUtils {
         if (info.remainingCollateralUsd < info.minCollateralUsdForLeverage) {
             return (true, "min collateral for leverage", info);
         }
+
         return (false, "", info);
     }
 
