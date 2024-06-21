@@ -1,5 +1,5 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { decimalToFloat, expandDecimals } from "../utils/math";
+import { decimalToFloat, percentageToFloat, expandDecimals } from "../utils/math";
 
 export default async function ({ network }: HardhatRuntimeEnvironment) {
   if (network.name === "hardhat") {

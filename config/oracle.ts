@@ -144,38 +144,9 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
         },
       },
     },
-
     xodex: { ...commonConfig },
     tenderly: { ...commonConfig, realtimeFeedVerifier: "0x0a150a8cda3c44263322e10041f5951a7baeda2c" },
 
-    wannsee: {
-      realtimeFeedVerifier: "0xb7Eaf885675f02Bdd6fBDA6Df44E38A819CE8040",
-      signers: ["0xDb32f128c5bA8fb17a7e51937A72d4e894E25cc2", "0xf5AD4B512F1633B2fDB936Aff6De79bD569E0651"],
-      minOracleSigners: 0,
-      minOracleBlockConfirmations: 255,
-      maxOraclePriceAge: 60 * 60,
-      maxRefPriceDeviationFactor: decimalToFloat(5, 1), // 50%
-      tokens: {
-        DG: {
-          priceFeed: {
-            address: "0xE4f2Dc0D05C3A10a1DA7e821320B242093314C9A",
-            decimals: 8,
-            // deploy: true,
-            heartbeatDuration: 24 * 60 * 60,
-            // initPrice: process.env.DG_INIT_PRICE,
-          },
-        },
-        WMXC: {
-          priceFeed: {
-            decimals: 8,
-            deploy: true,
-            heartbeatDuration: 24 * 60 * 60,
-            stablePrice: decimalToFloat(1),
-            initPrice: process.env.WMXC_INIT_PRICE,
-          },
-        },
-      },
-    },
 
     arbitrum: {
       realtimeFeedVerifier: "0xDBaeB34DF0AcfA564a49e13840C5CE2894C4b886",
@@ -247,6 +218,41 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
         ARB: {
           priceFeed: {
             address: "0xb2A824043730FE05F3DA2efaFa1CBbe83fa548D6",
+            decimals: 8,
+            heartbeatDuration: (24 + 1) * 60 * 60,
+          },
+        },
+        ATOM: {
+          priceFeed: {
+            address: "0xCDA67618e51762235eacA373894F0C79256768fa",
+            decimals: 8,
+            heartbeatDuration: (24 + 1) * 60 * 60,
+          },
+        },
+        NEAR: {
+          priceFeed: {
+            address: "0xBF5C3fB2633e924598A46B9D07a174a9DBcF57C0",
+            decimals: 8,
+            heartbeatDuration: (24 + 1) * 60 * 60,
+          },
+        },
+        AAVE: {
+          priceFeed: {
+            address: "0xaD1d5344AaDE45F43E596773Bcc4c423EAbdD034",
+            decimals: 8,
+            heartbeatDuration: (24 + 1) * 60 * 60,
+          },
+        },
+        AVAX: {
+          priceFeed: {
+            address: "0x8bf61728eeDCE2F32c456454d87B5d6eD6150208",
+            decimals: 8,
+            heartbeatDuration: (24 + 1) * 60 * 60,
+          },
+        },
+        OP: {
+          priceFeed: {
+            address: "0x205aaD468a11fd5D34fA7211bC6Bad5b3deB9b98",
             decimals: 8,
             heartbeatDuration: (24 + 1) * 60 * 60,
           },
@@ -355,6 +361,35 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
             decimals: 8,
             heartbeatDuration: (24 + 1) * 60 * 60,
             stablePrice: decimalToFloat(1),
+          },
+        },
+      },
+    },
+
+    arbitrumSepolia: {
+      realtimeFeedVerifier: "0xF7d27557369D05ad2B3d020af78480Ed6a2ca1f9",
+      signers: ["0xb38302e27bAe8932536A84ab362c3d1013420Cb4"],
+      maxOraclePriceAge: 5 * 60,
+      maxRefPriceDeviationFactor: decimalToFloat(5, 1), // 50%
+      minOracleBlockConfirmations: 255,
+      minOracleSigners: 1,
+
+      // price feeds https://docs.chain.link/data-feeds/price-feeds/addresses?network=arbitrum&page=1
+      tokens: {
+        USDC: {
+          priceFeed: {
+            address: "0x0153002d20B96532C639313c2d54c3dA09109309",
+            decimals: 8,
+            heartbeatDuration: 3 * 24 * 60 * 60,
+            stablePrice: decimalToFloat(1),
+          },
+        },
+        BTC: {
+          priceFeed: {
+            address: "0x56a43EB56Da12C0dc1D972ACb089c06a5dEF8e69",
+            decimals: 8,
+            heartbeatDuration: 3 * 24 * 60 * 60,
+            stablePrice: decimalToFloat(44000),
           },
         },
       },
