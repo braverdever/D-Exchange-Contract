@@ -23,7 +23,6 @@ export function createDeployFunction({
   libraryNames = [],
   afterDeploy = null,
   id,
-  shouldDeploy = false, // Add this line
 }: {
   contractName: string;
   dependencyNames?: string[];
@@ -38,8 +37,7 @@ export function createDeployFunction({
     network: any;
   }) => Promise<void>;
   id?: string;
-  shouldDeploy?: boolean;
-}): DeployFunction {
+}): DeployFunction & Required<Pick<DeployFunction, "dependencies">> {
   const func = async ({ getNamedAccounts, deployments, gmx, network }: HardhatRuntimeEnvironment) => {
     const { deploy, get } = deployments;
     const { deployer } = await getNamedAccounts();
@@ -77,7 +75,6 @@ export function createDeployFunction({
         log: true,
         args: deployArgs,
         libraries,
-        force: shouldDeploy, // Add this line
       });
     } catch (e) {
       // the caught error might not be very informative

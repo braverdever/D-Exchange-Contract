@@ -352,8 +352,6 @@ describe("Exchange.Deposit", () => {
 
     await dataStore.setUint(keys.minMarketTokensForFirstDeposit(ethUsdMarket.marketToken), expandDecimals(1, 18));
 
-    console.log("aria key1 = ", keys.minMarketTokensForFirstDeposit("0xbb7AA575b3c2f69413222b104AdDADb4A07ac635"))
-    console.log("aria key2 = ", expandDecimals(1, 18))
     await handleDeposit(fixture, {
       create: {
         longTokenAmount: expandDecimals(1, 17),

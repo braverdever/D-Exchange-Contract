@@ -1,10 +1,10 @@
 import hre from "hardhat";
+import { getErrorString, parseError } from "../utils/error";
 
 async function main() {
   console.log("Network: %s", hre.network.name);
 
-  // const txHash = process.env.TaX;
-  const txHash = '0xce2b4f2888925e2e85d9be81a14abfd66711ee8e8f2e8d1a3bfcc54565505e2f'
+  const txHash = process.env.TX;
   if (!txHash) {
     throw new Error(
       "Missing TX env var. Example of usage: `TX=0x123... npx hardhat run scripts/decodeTransactionEvents.ts`"
@@ -35,6 +35,11 @@ async function main() {
         const key = `${type}Items`;
         for (const item of eventData[key].items) {
           console.log("    %s: %s (%s)", item.key, item.value, type);
+          if (item.key === "reasonBytes") {
+            const error = parseError(item.value, false);
+            const parsedReason = error ? getErrorString(error) : undefined;
+            console.log("      parsed: %s", parsedReason);
+          }
         }
         for (const item of eventData[key].arrayItems) {
           console.log("    %s: %j (%s)", item.key, item.value, type);
