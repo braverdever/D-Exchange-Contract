@@ -169,7 +169,7 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<RolesCon
       },
     },
     xodex: testnetConfig,
-    devNet: testnetConfig,
+    tenderly: testnetConfig,
     wannsee: testnetConfig,
     arbitrumGoerli: testnetConfig,
     avalancheFuji: {

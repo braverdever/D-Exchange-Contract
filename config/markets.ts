@@ -390,7 +390,7 @@ const config: {
   [network: string]: MarketConfig[];
 } = {
   xodex: commonConfig,
-  devNet: commonConfig,
+  tenderly: commonConfig,
   wannsee: [
     {
       tokens: { indexToken: "DG", longToken: "DG", shortToken: "WMXC" },

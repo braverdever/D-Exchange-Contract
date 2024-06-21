@@ -10,16 +10,20 @@ const func = async ({ getNamedAccounts, deployments, gmx }: HardhatRuntimeEnviro
       continue;
     }
 
-    const contractName = `${tokenSymbol}PriceFeed`;
-    const { address, newlyDeployed } = await deploy(contractName, {
+    // const contractName = `${tokenSymbol}PriceFeed`;
+    // const { address, newlyDeployed } = await deploy(contractName, {
+    //   from: deployer,
+    //   log: true,
+    //   contract: "MockPriceFeed",
+    // });
+    const { address, newlyDeployed } = await deploy("MockPriceFeed", {
       from: deployer,
       log: true,
-      contract: "MockPriceFeed",
     });
     priceFeed.address = address;
 
     if (newlyDeployed) {
-      await execute(contractName, { from: deployer, log: true }, "setAnswer", priceFeed.initPrice);
+      await execute("MockPriceFeed", { from: deployer, log: true }, "setAnswer", priceFeed.initPrice);
     }
   }
 };

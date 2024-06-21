@@ -197,17 +197,15 @@ contract OrderHandler is IOrderHandler, BaseOrderHandler {
 
         uint256 executionGas = GasUtils.getExecutionGas(dataStore, startingGas);
 
-        // try this._executeOrder{ gas: executionGas }(
-        this._executeOrder(
+        try this._executeOrder{ gas: executionGas }(
             key,
             order,
             oracleParams,
             msg.sender
-        );
-        // {
-        // } catch (bytes memory reasonBytes) {
-        //     _handleOrderError(key, startingGas, reasonBytes);
-        // }
+        ) {
+        } catch (bytes memory reasonBytes) {
+            _handleOrderError(key, startingGas, reasonBytes);
+        }
     }
 
     // @dev executes an order

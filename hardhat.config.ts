@@ -21,9 +21,9 @@ import "./config";
 // add test helper methods
 import "./utils/test";
 
-// import * as tenderly from "@tenderly/hardhat-tenderly";
+import * as tenderly from "@tenderly/hardhat-tenderly";
 
-// tenderly.setup({ automaticVerifications: true });
+tenderly.setup({ automaticVerifications: true });
 
 const getRpcUrl = (network) => {
   const defaultRpcs = {
@@ -194,10 +194,14 @@ const config: HardhatUserConfig = {
       // },
       // blockGasLimit: 2500,
     },
-    devNet: {
+    tenderly: {
       url: "https://virtual.mainnet.rpc.tenderly.co/6ede96bc-6dd2-4e78-9813-afbbb54edf8b",
       accounts: getEnvAccounts(),
       chainId: 2362,
+      verify: {
+        default: true,
+        exclude: ["./deploy/deployTestPriceFeeds.ts"],
+      },
     },
     // txodex: {
     //   url: getRpcUrl("txodex"),
@@ -216,7 +220,8 @@ const config: HardhatUserConfig = {
   tenderly: {
     // https://docs.tenderly.co/account/projects/account-project-slug
     project: "xo",
-    username: "nicolai_xo",
+    username: "xodex",
+    privateVerification: false,
   },
 
   // hardhat-deploy has issues with some contracts

@@ -115,7 +115,7 @@ export default async function ({ network }: HardhatRuntimeEnvironment) {
       executionGasFeeBaseAmount: 1_000_000,
     },
     xodex: commonNetworkConfig,
-    devNet: commonNetworkConfig,
+    tenderly: commonNetworkConfig,
   }[network.name];
 
   if (!networkConfig) {

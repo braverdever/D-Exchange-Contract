@@ -499,7 +499,7 @@ const config: {
     },
   },
   xodex: commonConfig,
-  devNet: commonConfig,
+  tenderly: commonConfig,
 };
 
 export default async function (hre: HardhatRuntimeEnvironment): Promise<TokensConfig> {
