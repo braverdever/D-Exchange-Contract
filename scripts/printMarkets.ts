@@ -7,14 +7,17 @@ async function main() {
   for (const [tokenSymbol, tokenConfig] of Object.entries(tokens)) {
     let address = tokenConfig.address;
     if (!address) {
-      address = (await hre.ethers.getContract(tokenSymbol)).address;
+      const contract = await hre.ethers.getContractAt("BetaToken", tokenSymbol);
+      address = contract.address;
     }
     addressToSymbol[address] = tokenSymbol;
   }
-
-  const reader = await hre.ethers.getContract("Reader");
-  const dataStore = await hre.ethers.getContract("DataStore");
+  const readerDeployment = await hre.deployments.get("Reader");
+  const dataStoreDeployment = await hre.deployments.get("DataStore");
+  const reader = await hre.ethers.getContractAt("Reader", readerDeployment.address);
+  const dataStore = await hre.ethers.getContractAt("DataStore", dataStoreDeployment.address);
   console.log("reading data from DataStore %s Reader %s", dataStore.address, reader.address);
+
   const markets = [...(await reader.getMarkets(dataStore.address, 0, 100))];
   const isDisabled = await Promise.all(
     markets.map((market) => dataStore.getBool(keys.isMarketDisabledKey(market.marketToken)))
