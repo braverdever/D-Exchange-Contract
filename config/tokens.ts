@@ -500,6 +500,8 @@ const config: {
   },
   xodex: commonConfig,
   tenderly: commonConfig,
+  testnet: commonConfig,
+
 };
 
 export default async function (hre: HardhatRuntimeEnvironment): Promise<TokensConfig> {

@@ -146,7 +146,7 @@ export default async function (hre: HardhatRuntimeEnvironment): Promise<OracleCo
     },
     xodex: { ...commonConfig },
     tenderly: { ...commonConfig, realtimeFeedVerifier: "0x0a150a8cda3c44263322e10041f5951a7baeda2c" },
-
+    testnet: { ...commonConfig, realtimeFeedVerifier: "0xB74efc538106F7a21C1A9d1423077aD405DA1ee3" },
 
     arbitrum: {
       realtimeFeedVerifier: "0xDBaeB34DF0AcfA564a49e13840C5CE2894C4b886",

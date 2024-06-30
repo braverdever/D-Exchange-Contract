@@ -23,19 +23,17 @@ import "./utils/test";
 
 import * as tenderly from "@tenderly/hardhat-tenderly";
 
-tenderly.setup({ automaticVerifications: true });
+tenderly.setup({ automaticVerifications: false });
 
 const getRpcUrl = (network) => {
   const defaultRpcs = {
-    // xodex: "https://xo-dex.io",
-    xodex: "https://testnet.xo-dex.com/rpc",
-
+    xodex: "https://xo-dex.io",
+    testnet: "https://testnet.xo-dex.com/rpc",
     bytex: "https://test-rpc.bytexc.org",
     arbitrum: "https://arb1.arbitrum.io/rpc",
     avalanche: "https://api.avax.network/ext/bc/C/rpc",
     arbitrumGoerli: "https://goerli-rollup.arbitrum.io/rpc",
     avalancheFuji: "https://api.avax-test.network/ext/bc/C/rpc",
-    wannsee: "https://wannsee-rpc.mxc.com",
   };
 
   let rpc = defaultRpcs[network];
@@ -155,19 +153,7 @@ const config: HardhatUserConfig = {
     //   blockGasLimit: 2500000,
     //   // gasPrice: 50000000000,
     // },
-    wannsee: {
-      url: getRpcUrl("wannsee"),
-      chainId: 5167003,
-      accounts: getEnvAccounts(),
-      // gasPrice: parseUnits("8000000", "gwei").toNumber(),
-      verify: {
-        etherscan: {
-          apiUrl: "https://wannsee-explorer-v1.mxc.com/",
-          apiKey: "",
-        },
-      },
-      // blockGasLimit: 2_000_000_000,
-    },
+
     bytex: {
       url: getRpcUrl("bytex"),
       chainId: 1919,
@@ -183,16 +169,13 @@ const config: HardhatUserConfig = {
     },
     xodex: {
       url: getRpcUrl("xodex"),
+      chainId: 2415,
+      accounts: getEnvAccounts(),
+    },
+    testnet: {
+      url: getRpcUrl("testnet"),
       chainId: 2416,
       accounts: getEnvAccounts(),
-      // gasPrice: parseUnits("100", "gwei").toNumber(),
-      // verify: {
-      //   etherscan: {
-      //     apiUrl: "https://test.bytescan.io/",
-      //     apiKey: "",
-      //   },
-      // },
-      // blockGasLimit: 2500,
     },
     tenderly: {
       url: "https://virtual.mainnet.rpc.tenderly.co/6ede96bc-6dd2-4e78-9813-afbbb54edf8b",
@@ -233,17 +216,8 @@ const config: HardhatUserConfig = {
       // avalanche: process.env.SNOWTRACE_API_KEY,
       // arbitrumGoerli: process.env.ARBISCAN_API_KEY,
       // avalancheFujiTestnet: process.env.SNOWTRACE_API_KEY,
-      wannsee: " ",
     },
     customChains: [
-      {
-        network: "wannsee",
-        chainId: 5167003,
-        urls: {
-          apiURL: "https://wannsee-explorer-v1.mxc.com/api",
-          browserURL: "https://wannsee-explorer.mxc.com",
-        },
-      },
       {
         network: "bytex",
         chainId: 1919,

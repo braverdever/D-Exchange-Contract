@@ -1,5 +1,6 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { decimalToFloat, percentageToFloat, expandDecimals } from "../utils/math";
+import { ethers } from "ethers";
 
 export default async function ({ network }: HardhatRuntimeEnvironment) {
   if (network.name === "hardhat") {
@@ -116,6 +117,7 @@ export default async function ({ network }: HardhatRuntimeEnvironment) {
     },
     xodex: commonNetworkConfig,
     tenderly: commonNetworkConfig,
+    testnet: commonNetworkConfig
   }[network.name];
 
   if (!networkConfig) {

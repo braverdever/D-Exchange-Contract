@@ -421,6 +421,7 @@ const config: {
 } = {
   xodex: commonConfig,
   tenderly: commonConfig,
+  testnet: commonConfig,
   arbitrum: [
     {
       tokens: { indexToken: "BTC", longToken: "WBTC.e", shortToken: "USDC" },

@@ -20,6 +20,8 @@ const rolesToRemove = {
   wannsee: [],
   xodex: [],
   tenderly: [],
+  testnet: [],
+
 };
 
 const func = async ({ gmx, network }) => {

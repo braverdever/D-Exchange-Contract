@@ -11,7 +11,7 @@ const func = createDeployFunction({
   getDeployArgs: async ({ dependencyContracts, network, gmx, get }) => {
     const oracleConfig = await gmx.getOracle();
     let realtimeFeedVerifierAddress = oracleConfig.realtimeFeedVerifier;
-    if (network.name === "hardhat" || network.name === "tenderly") {
+    if (network.name === "hardhat" || network.name === "tenderly" || network.name === "testnet") {
       const realtimeFeedVerifier = await get("MockRealtimeFeedVerifier");
       realtimeFeedVerifierAddress = realtimeFeedVerifier.address;
     }

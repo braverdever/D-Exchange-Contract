@@ -5,6 +5,7 @@ import { TokenConfig } from "../config/tokens";
 import * as keys from "../utils/keys";
 import { setAddressIfDifferent, setUintIfDifferent } from "../utils/dataStore";
 import { expandDecimals } from "../utils/math";
+import { ethers } from "ethers";
 
 const func = async ({ getNamedAccounts, deployments, gmx, network }: HardhatRuntimeEnvironment) => {
   const { deploy, log } = deployments;
@@ -32,7 +33,7 @@ const func = async ({ getNamedAccounts, deployments, gmx, network }: HardhatRunt
     const { address, newlyDeployed } = await deploy(tokenSymbol, {
       from: deployer,
       log: true,
-      contract: token.wrappedNative ? "WNT" : "MintableToken",
+      contract: token.wrappedNative ? "WNT" : (network.name === "testnet" ? "BetaToken" : "MintableToken"),
       args: token.wrappedNative ? [] : [tokenSymbol, tokenSymbol, token.decimals],
     });
 
@@ -43,7 +44,7 @@ const func = async ({ getNamedAccounts, deployments, gmx, network }: HardhatRunt
       }
 
       if (!token.wrappedNative) {
-        const tokenContract = await ethers.getContractAt("MintableToken", address);
+        const tokenContract = await ethers.getContractAt(network.name === "testnet" ? "BetaToken" : "MintableToken", address);
         await tokenContract.mint(deployer, expandDecimals(1000000000, token.decimals));
       }
     }
