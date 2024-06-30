@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract CappedMintableToken is ERC20, Ownable {
+contract BetaToken is ERC20, Ownable {
     uint256 public mintCap;
 
     event MintCapUpdated(uint256 newCap);

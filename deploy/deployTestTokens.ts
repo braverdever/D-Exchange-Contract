@@ -5,7 +5,6 @@ import { TokenConfig } from "../config/tokens";
 import * as keys from "../utils/keys";
 import { setAddressIfDifferent, setUintIfDifferent } from "../utils/dataStore";
 import { expandDecimals } from "../utils/math";
-import { ethers } from "ethers";
 
 const func = async ({ getNamedAccounts, deployments, gmx, network }: HardhatRuntimeEnvironment) => {
   const { deploy, log } = deployments;
